@@ -4,6 +4,7 @@ import urandom
 
 pressed = False
 fastest_button = None
+timer_reaction = 0
 
 led = machine.Pin(15, machine.Pin.OUT)
 left_button = machine.Pin(14, machine.Pin.IN, machine.Pin.PULL_DOWN)
@@ -16,6 +17,8 @@ def button_handler(pin):
         print(pin)
         global fastest_button
         fastest_button = pin
+        global timer_reaction
+        timer_reaction = utime.ticks_diff(utime.ticks_ms(), timer_start)
 
 
 led.value(1)
@@ -33,3 +36,6 @@ if fastest_button is left_button:
     print("Left Player wins!")
 elif fastest_button is right_button:
     print("Right Player wins!")
+
+print("Your reaction time was " + str(timer_reaction) +
+" milliseconds!")
