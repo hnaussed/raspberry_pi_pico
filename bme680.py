@@ -1,10 +1,47 @@
-import math
-from machine import I2C, Pin
+# The MIT License (MIT)
+#
+# Copyright (c) 2017 ladyada for Adafruit Industries
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+
+# We have a lot of attributes for this complex sensor.
+# pylint: disable=too-many-instance-attributes
+
+"""
+`bme680` - BME680 - Temperature, Humidity, Pressure & Gas Sensor
+================================================================
+
+MicroPython driver from BME680 air quality sensor, based on Adafruit_bme680
+
+* Author(s): Limor 'Ladyada' Fried of Adafruit
+             Jeff Raber (SPI support)
+             and many more contributors
+"""
+
 import time
+import math
 from micropython import const
 from ubinascii import hexlify as hex
-import struct
-
+try:
+    import struct
+except ImportError:
+    import ustruct as struct
 
 #    I2C ADDRESS/BITS/SETTINGS
 #    -----------------------------------------------------------------------
@@ -382,28 +419,3 @@ class BME680_SPI(Adafruit_BME680):
         if register < 0x80:
             spi_mem_page = 0x10
         self._write(_BME680_REG_PAGE_SELECT, [spi_mem_page])
-        
-
-
-
-sda = machine.Pin(26) 
-scl = machine.Pin(27)
-i2c = machine.I2C(1,sda=sda,scl=scl,freq=400000) 
-
-print('Scan i2c bus...')
-devices = i2c.scan()
-
-if len(devices) == 0:
-  print("No i2c device !")
-else:
-  print('i2c devices found:',len(devices))
- 
-  for device in devices:  
-     #hex( device ) gives me this error ( TypeError: object with buffer protocol required )
-    print("Device: ",str(device))
-
-bme = BME680_I2C( i2c)
-
-while True: 
-    print("Temp:", bme.temperature, "Feuchtigkeit:", bme.humidity, "Druck:", bme.pressure, "Gas:", bme.gas)
-    time.sleep(10)
