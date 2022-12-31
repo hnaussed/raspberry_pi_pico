@@ -23,3 +23,5 @@ bme = BME680_I2C( i2c)
 while True: 
     print("Temp:", bme.temperature, "Feuchtigkeit:", bme.humidity, "Druck:", bme.pressure, "Gas:", bme.gas)
     sleep(10)
+
+    
