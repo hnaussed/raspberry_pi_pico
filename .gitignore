@@ -3,4 +3,5 @@
 !.vscode/extensions.json
 !.vscode/*.code-snippets
 wlan_config.py
+mqtt_config.py
 
