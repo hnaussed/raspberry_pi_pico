@@ -1,10 +1,14 @@
-* TODO
-async
-mqtt
+# TODO
+* async
+* timer: https://electrocredible.com/micropython-timers-tutorial/
+* Interupts: https://electrocredible.com/raspberry-pi-pico-external-interrupts-button-micropython/
+* LDR
+* RTC
+* mqtt
+* Datenbank
+* login
+* Richtiger Sensor
+* css
+* Muss ich unbgedingt parcel benutzen
 
-# raspberry_pi_pico
-Playing around with my raspberry pi pico
-
-# Unterschied time und utime
-utime: Siehe hier https://docs.micropython.org/en/v1.15/library/utime.html  
-time: https://docs.micropython.org/en/latest/library/time.html
+https://www.digitalocean.com/community/tutorials/how-to-make-a-web-application-using-flask-in-python-3-de#schritt-4-einrichten-der-datenbank
