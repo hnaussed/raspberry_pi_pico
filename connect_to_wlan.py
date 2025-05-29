@@ -6,7 +6,7 @@ import wlan_config
 rp2.country("DE")
 wlan = network.WLAN(network.STA_IF)
  
-def connect_to_network():
+def connect_to_wlan():
 
     ssid = wlan_config.ssid
     psk = wlan_config.psk
@@ -27,4 +27,6 @@ def connect_to_network():
     else:
         print("Connected to Wi-Fi network.")
         print(wlan.ifconfig())
+    
+    return wlan
         

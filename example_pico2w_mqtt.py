@@ -3,7 +3,7 @@ import machine
 import time
 import mqtt_config
 
-from connect_2_wlan import connect_to_network,wlan
+from connect_to_wlan import connect_to_network,wlan
 from umqtt_simple import MQTTClient
 
 mqttBroker = '192.168.178.55'

@@ -8,7 +8,6 @@
 * Datenbank
 * login
 * Richtiger Sensor
-* css
-* Muss ich unbgedingt parcel benutzen
+* esphome und home assistant
 
 https://www.digitalocean.com/community/tutorials/how-to-make-a-web-application-using-flask-in-python-3-de#schritt-4-einrichten-der-datenbank
