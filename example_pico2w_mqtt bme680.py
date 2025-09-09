@@ -5,21 +5,6 @@ import mqtt_config
 import bme680 
 
 
-# Set time and date on PCF8563
-
-from fc_pcf8563 import *
-
-# Instantiate a PCF8563 RTC object.
-pcf8563 = PCF8563()
-
-# Set the clock's date and time.
-pcf8563.DateTime([24, 9, 30, 1, 9, 42, 5])
-
-# Check that the date & time
-# have been correctly set.
-print('Date:', pcf8563.Date())
-print('Time:', pcf8563.Time())
-
 
 from connect_to_wlan import connect_to_wlan
 from umqtt_simple import MQTTClient
