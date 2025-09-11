@@ -82,16 +82,30 @@ def setRTCTime():
     else:
         tm = time.gmtime(ntpTime + timezone["standardUtcOffset"]["seconds"] )
 
-    machine.RTC().datetime((tm[0], tm[1], tm[2], tm[6] + 1, tm[3], tm[4], tm[5], tm))
-    pcf.write_all( tm[5], tm[4], tm[3], tm[6] + 1, tm[2], tm[1], tm[0] - 2000 )
+    pcf.set_datetime(( tm[0], tm[1], tm[2], tm[6], tm[3], tm[4], tm[5]))
+
+def syncRTCTime():
+    (year, month, day, weekday, hours, minutes, seconds )= pcf.datetime()
+    machine.RTC().datetime(( year, month, day, weekday, hours, minutes, seconds,0))
 
 # WLAN-Verbindung herstellen
 wlanConnect()
 
 # Zeit setzen
+
 setRTCTime()
 
 # Aktuelles Datum ausgeben
 print()
-print(machine.RTC().datetime())
-print( pcf.datetime() )
+
+while True:
+    
+    syncRTCTime()
+    print("-" * 20)
+    print(machine.RTC().datetime())
+    print(pcf.datetime())
+    machine.lightsleep(5000)
+
+#gmtime(year, month, mday, hour, minute, second, weekday, yearday)
+#rtcdatetime: (year, month, day, weekday, hours, minutes, seconds, subseconds)
+#pcfdatetime: (year, month, date, day,    hours, minutes, seconds).
