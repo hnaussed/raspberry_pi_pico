@@ -1,10 +1,10 @@
 import bme680 
-import ssd1306
+import sh1106
 import machine
 import time
 
-sda = machine.Pin(0)
-scl = machine.Pin(1)
+sda = machine.Pin(16)
+scl = machine.Pin(17)
 i2c = machine.I2C(0, sda=sda, scl=scl, freq=400000)
 
 # I2C-Bus-Scan
@@ -19,7 +19,7 @@ else:
     for device in devices:
         print('Dezimale Adresse:', device, '| Hexadezimale Adresse:', hex(device))
 
-display = ssd1306.SSD1306_I2C(128, 32, i2c)
+display = sh1106.SH1106_I2C(128, 64, i2c, None, 0x3c,rotate=180)
  
 display.text("Hello, Pico!", 0, 0, 1)
 display.show()
@@ -33,5 +33,6 @@ while True:
     display.text(f"Hum:   {bme.humidity}", 0, 10, 1)
     display.text(f"Press: {bme.pressure}", 0, 20, 1)
     display.text(f"Gas:   {bme.gas}", 0, 30, 1)
+
     display.show()
     time.sleep(1)

@@ -1,8 +1,8 @@
 import machine
 import sh1106
  
-sda = machine.Pin(0)
-scl = machine.Pin(1)
+sda = machine.Pin(16)
+scl = machine.Pin(17)
 i2c = machine.I2C(0, sda=sda, scl=scl, freq=400000)
 display = sh1106.SH1106_I2C(128, 64, i2c, None, 0x3c,rotate=180)
  
