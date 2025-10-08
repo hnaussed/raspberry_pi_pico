@@ -44,8 +44,10 @@ def setPCFTime( pcf ):
     pcf.set_datetime(( tm[0], tm[1], tm[2], tm[6], tm[3], tm[4], tm[5]))
 
 def syncRTCTime( pcf ):
-    (year, month, day, weekday, hours, minutes, seconds )= pcf.datetime()
-    machine.RTC().datetime(( year, month, day, weekday, hours, minutes, seconds,0))
+    # (year, month, date, day, hours, minutes, seconds
+    (year, month, day, weekday, hours, minutes, seconds ) = pcf.datetime()
+    #(year, month, day, weekday, hours, minutes, seconds, subseconds)
+    machine.RTC().datetime(( 2000+year, month, day, weekday, hours, minutes, seconds,0))
 
 def wlanConnect( wlan ):
 
